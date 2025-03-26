@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>User Management</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+</head>
+<body>
+    <!-- Login & Register Section -->
+    <div class="container mt-5" id="auth-section">
+        <!-- Login Form -->
+        <div id="login-form">
+            <h2>Login</h2>
+            <input type="email" id="login-email" class="form-control" placeholder="Email"><br>
+            <input type="password" id="login-password" class="form-control" placeholder="Password"><br>
+            <p id="login-message" style="display: none; color: red;"></p> <!-- Notification Area -->
+            <button class="btn btn-primary" onclick="login()">Login</button>
+            <button class="btn btn-secondary" onclick="showRegisterForm()">Register</button>
+        </div>
+
+        <!-- Register Form -->
+        <div id="register-form" style="display: none;">
+            <h2>Register</h2>
+            <input type="text" id="register-name" class="form-control" placeholder="Name"><br>
+            <input type="email" id="register-email" class="form-control" placeholder="Email"><br>
+            <input type="password" id="register-password" class="form-control" placeholder="Password"><br>
+            <button class="btn btn-success" onclick="register()">Register</button>
+            <button class="btn btn-secondary" onclick="showLoginForm()">Login</button>
+        </div>
+    </div>
+
+    <!-- User Management Section (Visible after login) -->
+    <div class="container mt-5" id="user-management-section" style="display: none;">
+        <div class="toolbar mb-3">
+            <button class="btn btn-danger" id="block-btn">Block</button>
+            <button class="btn btn-warning" id="unblock-btn">Unblock</button>
+            <button class="btn btn-danger" id="delete-btn">Delete</button>
+        </div>
+        <table class="table">
+            <thead>
+                <tr>
+                    <th><input type="checkbox" id="select-all" onchange="selectAll()"></th>
+                    <th>Name</th>
+                    <th>Email</th>
+                    <th>Last Login</th>
+                    <th>Status</th>
+                </tr>
+            </thead>
+            <tbody id="user-table-body"></tbody>
+        </table>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
