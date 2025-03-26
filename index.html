@@ -5,37 +5,117 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>User Management</title>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <style>
+        .auth-container {
+            display: block; 
+            min-height: 100vh;
+            background-color: #f4f4f4;
+            position: relative; 
+        }
+    
+        .auth-form {
+            width: 350px;
+            padding: 30px;
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            background-color: white;
+            position: absolute; 
+            top: 50%; 
+            left: 50%; 
+            transform: translate(-50%, -50%); 
+        }
+
+        .auth-form h2 {
+            text-align: center;
+            margin-bottom: 25px;
+            color: #333;
+        }
+
+        .auth-form .form-control {
+            margin-bottom: 15px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            padding: 10px;
+        }
+
+        .auth-form .btn {
+            width: 100%;
+            padding: 12px;
+            border-radius: 5px;
+            font-weight: bold;
+        }
+
+        .auth-form .btn-primary {
+            background-color: #007bff;
+            border-color: #007bff;
+        }
+
+        .auth-form .btn-success {
+            background-color: #28a745;
+            border-color: #28a745;
+        }
+
+        .auth-form .register-link {
+            text-align: center;
+            margin-top: 15px;
+        }
+
+        .auth-form .register-link a {
+            color: #007bff;
+            text-decoration: none;
+        }
+
+        .auth-form .register-link a:hover {
+            text-decoration: underline;
+        }
+
+        .toolbar {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        #user-management-section {
+            position: relative;
+        }
+
+        #logout-btn {
+            position: absolute;
+            top: 0px; 
+            right: 20px;
+        }
+    </style>
 </head>
 <body>
-    <!-- Login & Register Section -->
-    <div class="container mt-5" id="auth-section">
-        <!-- Login Form -->
-        <div id="login-form">
+    <div class="container auth-container" id="auth-section">
+        <div class="auth-form" id="login-form">
             <h2>Login</h2>
             <input type="email" id="login-email" class="form-control" placeholder="Email"><br>
             <input type="password" id="login-password" class="form-control" placeholder="Password"><br>
-            <p id="login-message" style="display: none; color: red;"></p> <!-- Notification Area -->
+            <p id="login-message" style="display: none; color: red;"></p>
             <button class="btn btn-primary" onclick="login()">Login</button>
-            <button class="btn btn-secondary" onclick="showRegisterForm()">Register</button>
+            <p class="register-link"><a href="#" onclick="showRegisterForm()">Don't have an account? Register</a></p>
         </div>
 
-        <!-- Register Form -->
-        <div id="register-form" style="display: none;">
+        <div class="auth-form" id="register-form" style="display: none;">
             <h2>Register</h2>
             <input type="text" id="register-name" class="form-control" placeholder="Name"><br>
             <input type="email" id="register-email" class="form-control" placeholder="Email"><br>
             <input type="password" id="register-password" class="form-control" placeholder="Password"><br>
             <button class="btn btn-success" onclick="register()">Register</button>
-            <button class="btn btn-secondary" onclick="showLoginForm()">Login</button>
+            <p class="register-link"><a href="#" onclick="showLoginForm()">Already have an account? Login</a></p>
         </div>
     </div>
 
-    <!-- User Management Section (Visible after login) -->
     <div class="container mt-5" id="user-management-section" style="display: none;">
+        <button class="btn btn-secondary" id="logout-btn">Logout</button>
         <div class="toolbar mb-3">
-            <button class="btn btn-danger" id="block-btn">Block</button>
-            <button class="btn btn-warning" id="unblock-btn">Unblock</button>
-            <button class="btn btn-danger" id="delete-btn">Delete</button>
+            <div>
+                <button class="btn btn-danger" id="block-btn">Block</button>
+                <button class="btn btn-warning" id="unblock-btn">Unblock</button>
+                <button class="btn btn-danger" id="delete-btn">Delete</button>
+            </div>
         </div>
         <table class="table">
             <thead>
