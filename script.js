@@ -1,5 +1,3 @@
-// script.js
-
 // Show login form
 function showLoginForm() {
     document.getElementById('login-form').style.display = 'block';
@@ -33,11 +31,12 @@ function register() {
     .then((response) => response.json())
     .then((data) => {
         if (data.error) {
-            alert(data.error);
+            alert(data.error); // Display the error message
             showRegisterForm();
         } else {
             alert(data.message);
             showLoginForm();
+
         }
     })
     .catch((error) => {
@@ -65,9 +64,11 @@ function login() {
             document.getElementById('auth-section').style.display = 'none';
             document.getElementById('user-management-section').style.display = 'block';
             fetchUsers();
+
         } else {
             alert(data.error);
             showLoginForm();
+            //location.reload(true);
         }
     })
     .catch((error) => {
@@ -226,6 +227,7 @@ document.getElementById('logout-btn').addEventListener('click', function() {
     document.getElementById('user-management-section').style.display = 'none';
     document.getElementById('auth-section').style.display = 'block';
     showLoginForm();
+    location.reload();
 });
 // Get selected user IDs
 function getSelectedUsers() {
